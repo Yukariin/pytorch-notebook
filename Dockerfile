@@ -6,6 +6,7 @@ WORKDIR /app/
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
+	python3-pip \
 	libsm6 \
 	libxext6 \
 	libxrender-dev \
@@ -20,7 +21,6 @@ RUN pip install \
 	torch \
 	torchvision \
 	jupyterlab
-	
 	
 CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--allow-root", "--no-browser"]
 EXPOSE 8888
