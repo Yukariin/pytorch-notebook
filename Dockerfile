@@ -6,17 +6,11 @@ WORKDIR /app/
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
-		python3-pip \
-		apt-utils \
-		vim \
-		git \
-		libsm6 \
-		libxext6 \
-		libxrender-dev \
-		ffmpeg && \
-	rm -rf /var/lib/apt/lists/*
-	
-RUN ln -s /usr/bin/python3 /usr/bin/python
+	libsm6 \
+	libxext6 \
+	libxrender-dev \
+	ffmpeg \
+	&& rm -rf /var/lib/apt/lists/*
 
 RUN pip install \
 	numpy \
@@ -28,5 +22,5 @@ RUN pip install \
 	jupyterlab
 	
 	
-CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--allow-root", "--no-browser"]
+CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--allow-root", "--no-browser"]
 EXPOSE 8888
